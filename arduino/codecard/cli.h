@@ -19,6 +19,7 @@ void help() {
   Serial.println(F("  restart           Restart wifi"));  
   Serial.println(F("  status            Show wifi status"));
   Serial.println(F("  home              Show home screen"));    
+  Serial.println(F("  image             Show BMP from serial"));    
   Serial.println(F("  reset             Reset to factory settings"));     
   Serial.println();
   Serial.println(F("Usage:"));
@@ -109,6 +110,11 @@ void loadDefaults(){
   Serial.println(F(">>>")); 
 }
 
+void showSerialBmp() {
+  Serial.println(F("Read from serial...")); 
+  displayImageFromSerial(0, 0, true);
+}
+
 void evalInput(String input) {
 
   String key = parseValue(input, '=', 0);
@@ -122,6 +128,7 @@ void evalInput(String input) {
   if (key == "restart") { restartWifi(); return; }   
   if (key == "heap") { Serial.println("Free HEAP: " + String(ESP.getFreeHeap())); return; }
   if (key == "home") { defaultScreen(); return; }
+  if (key == "image") { showSerialBmp(); return; }
   if (key == "reset") { loadDefaults(); return; }
 
   if (key.indexOf("longpress") > -1) {

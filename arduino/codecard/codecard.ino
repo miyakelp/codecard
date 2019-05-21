@@ -35,6 +35,7 @@
 #include "dataParser.h"
 #include "httpClient.h"
 #include "buttonEvents.h"
+#include "serialBmp.h"
 #include "cli.h"
 
 
